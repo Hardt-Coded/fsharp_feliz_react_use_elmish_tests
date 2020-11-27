@@ -5,7 +5,10 @@
     <ItemGroup>
         <None Include="styles\main.scss" />
         <None Include="index.html" />
-        <Compile Include="Components.fs" />
+        <Compile Include="InnerComponentElmish.fs" />
+        <Compile Include="InnerComponentReact.fs" />
+        <Compile Include="OuterComponentElmish.fs" />
+        <Compile Include="OuterComponentReact.fs" />
         <Compile Include="Main.fs" />
     </ItemGroup>
     <ItemGroup>

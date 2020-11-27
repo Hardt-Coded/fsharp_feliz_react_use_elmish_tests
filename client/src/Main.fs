@@ -7,6 +7,6 @@ open Browser.Dom
 importSideEffects "./styles/main.scss"
 
 ReactDOM.render(
-    Components.Outer.outerCounter (),
+    OuterComponentReact.outerCounter (),
     document.getElementById("component-one")
 )
