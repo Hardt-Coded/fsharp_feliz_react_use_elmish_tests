@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/styles/main.scss"],"names":[],"mappings":";AAEA,EACI,iCAGJ,KACI,UACA,S","file":"style.css","sourcesContent":["@import url('https://fonts.googleapis.com/css?family=Spartan&display=swap');\n\n* {\n    font-family: 'Spartan', sans-serif;\n}\n\nbody {\n    padding: 0;\n    margin: 0;\n}"],"sourceRoot":""}
