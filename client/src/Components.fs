@@ -68,7 +68,7 @@ module Outer =
         | Decrement
         | GetValueFromInnerComponent of int
 
-    let init callback =
+    let init () =
         { Counter = 0 }, Cmd.none
 
 
