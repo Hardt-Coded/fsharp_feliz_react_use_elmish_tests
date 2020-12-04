@@ -14,8 +14,11 @@
             | Decrement
             | GetValueFromInnerComponent of int
     
-        let init () =
-            { Counter = 0 }, Cmd.none
+        let init (startValue:string) =
+            Browser.Dom.console.log(startValue)
+            let isOk,v = System.Int32.TryParse startValue
+            let startValue = if isOk then v else 0
+            { Counter = startValue }, Cmd.none
     
     
         let update msg state =

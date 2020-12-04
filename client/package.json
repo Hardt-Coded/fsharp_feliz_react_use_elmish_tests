@@ -13,9 +13,11 @@
     "dependencies": {
         "date-fns": "^2.16.1",
         "pigeon-maps": "^0.16.1",
+        "prop-types": "^15.7.2",
         "react": "^16.14.0",
         "react-dom": "^16.14.0",
         "react-popover": "^0.5.10",
+        "react-to-webcomponent": "^1.5.0",
         "recharts": "^1.8.5",
         "remotedev": "^0.2.9"
     },

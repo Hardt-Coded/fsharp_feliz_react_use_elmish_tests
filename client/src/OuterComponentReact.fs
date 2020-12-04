@@ -3,9 +3,10 @@
     open Feliz
     open Feliz.UseElmish
     open OuterComponentElmish
+    open WebComponent
 
-    [<ReactComponent>]
-    let outerCounter () =
-        let state, dispatch = React.useElmish(init , update, [|  |])
+    [<ReactWebComponent(false,true)>]
+    let outerCounter (start:string) =
+        let state, dispatch = React.useElmish(init start, update, [| start :> obj |])
         view state dispatch
 
