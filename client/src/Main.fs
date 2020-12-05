@@ -8,16 +8,12 @@ open WebComponent
 
 importSideEffects "./styles/main.scss"
 
-[<ReactWebComponentCall("component-one")>]
+
+
+[<CreateReactWebComponent("component-one")>]
 let webComp = OuterComponentReact.OuterCounter
 
-//rc.propTypes {| start = PropTypes.string.isRequired |}
 
-//let webComp = reactToWebComponent(rc, react, reactDom, {| shadow = true |})
-
-
-
-//CustomElement.define("component-one", webComp)
 
 
 

@@ -110,11 +110,9 @@ type ReactWebComponentAttribute(exportDefault: bool) =
 
 
 
-type ReactWebComponentCallAttribute(customElementName:string) =
+type CreateReactWebComponentAttribute(customElementName:string) =
     inherit MemberDeclarationPluginAttribute()
     override _.FableMinimumVersion = "3.0"
-    
-    //new() = ReactWebComponentCallAttribute()
 
     override _.TransformCall(compiler, memb, expr) =
         expr
