@@ -6,7 +6,12 @@
 
         type Model = {
             Counter: int
-            
+            StartValue:string
+            Arg2:string
+            Arg3:string
+            Arg4:string
+            Arg5:string
+            Arg6:string
         }
     
         type Msg =
@@ -14,11 +19,12 @@
             | Decrement
             | GetValueFromInnerComponent of int
     
-        let init (startValue:string) =
+        let init (startValue:string)
+                 arg2 arg3 arg4 arg5 arg6 =
             Browser.Dom.console.log(startValue)
             let isOk,v = System.Int32.TryParse startValue
-            let startValue = if isOk then v else 0
-            { Counter = startValue }, Cmd.none
+            let startValueInt = if isOk then v else 0
+            { Counter = startValueInt; StartValue = startValue; Arg2 = arg2; Arg3 = arg3; Arg4 = arg4; Arg5 = arg5; Arg6 = arg6 }, Cmd.none
     
     
         let update msg state =
@@ -35,7 +41,15 @@
             Html.div [
                 prop.style [ style.padding 20 ]
                 prop.children [
-                    Html.h1 "The Outer Component"
+                    Html.h1 "The Outer React Web Component"
+                    Html.p "Values from the WebComponents Arguments:"
+                    Html.p state.StartValue
+                    Html.p state.Arg2
+                    Html.p state.Arg3
+                    Html.p state.Arg4
+                    Html.p state.Arg5
+                    Html.p state.Arg6
+                    Html.p ""
                     Html.p "The counter value is passed to the inner component"
                     Html.h1 state.Counter
                     Html.button [

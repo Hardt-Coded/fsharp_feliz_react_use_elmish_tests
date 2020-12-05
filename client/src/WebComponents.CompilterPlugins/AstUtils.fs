@@ -15,6 +15,14 @@
           IsThisArgument = false
           IsMutable = false
           Range = None }
+
+    let unitIdent : Fable.Ident =
+        { Name = ""
+          Type = Fable.Unit
+          IsCompilerGenerated = true
+          IsThisArgument = false
+          IsMutable = false
+          Range = None }
     
     let makeValue r value =
         Fable.Value(value, r)
@@ -62,6 +70,12 @@
         Fable.Import({ Selector = selector
                        Path = path
                        IsCompilerGenerated = true }, Fable.Any, None)
+
+
+    let makeImport2 (selector: string) (path: string) =
+        Fable.Import({ Selector = selector
+                       Path = path
+                       IsCompilerGenerated = false }, Fable.Any, None)
     
     let isRecord (compiler: PluginHelper) (fableType: Fable.Type) =
         match fableType with
@@ -81,6 +95,13 @@
         match fableType with
         | Fable.Type.DeclaredType (entity, genericArgs) -> entity.FullName.EndsWith "ReactElement"
         | _ -> false
+
+    let isFunctionWithReturnValueReactElement (fableType: Fable.Type) =
+        match fableType with
+        | Fable.Type.DeclaredType (entity, genericArgs) -> 
+            entity.FullName.EndsWith "ReactElement" && genericArgs.Length = 1
+        | _ -> false
+
     
     let recordHasField name (compiler: PluginHelper) (fableType: Fable.Type) =
         match fableType with
@@ -94,6 +115,10 @@
     
         | _ ->
             false
+
+
+    let makeAnonFunction args body =
+        Fable.Lambda(args, body, None)
     
     let makeCall callee args =
         let callInfo: Fable.CallInfo =

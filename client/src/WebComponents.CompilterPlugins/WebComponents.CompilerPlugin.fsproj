@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Compile Include="AstUtils.fs" />
+    <Compile Include="Utils.fs" />
     <Compile Include="WebComponents.fs" />
   </ItemGroup>
 
