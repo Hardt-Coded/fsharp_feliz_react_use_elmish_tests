@@ -1,8 +1,6 @@
 module Main
 
 open Fable.Core.JsInterop
-open WebComponentsHelper
-open Feliz
 open WebComponent
 
 

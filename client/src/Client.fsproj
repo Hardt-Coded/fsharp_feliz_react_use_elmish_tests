@@ -5,7 +5,6 @@
     <ItemGroup>
         <None Include="styles\main.scss" />
         <None Include="index.html" />
-        <Compile Include="WebComponentsHelper.fs" />
         <Compile Include="InnerComponentElmish.fs" />
         <Compile Include="InnerComponentReact.fs" />
         <Compile Include="OuterComponentElmish.fs" />
