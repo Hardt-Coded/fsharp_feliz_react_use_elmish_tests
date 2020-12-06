@@ -27,14 +27,13 @@ type ReactWebComponentAttribute(exportDefault: bool) =
         | Fable.Call(callee, info, typeInfo, range) when List.length membArgs = List.length info.Args ->
             // F# Component()
             // JSX <Component />
-            // JS createElement(Component, null)
+            // JS createElement(Component, inputAnonymousRecord)
             (AstUtils.makeCall (AstUtils.makeImport "createElement" "react") [callee; info.Args.[0] ])
         | _ ->
             // return expression as is when it is not a call expression
             expr
     
     override this.Transform(compiler, file, decl) =
-        compiler.LogWarning (decl.Info.ToString())
         match decl with
         | MemberNotFunction ->
             // Invalid attribute usage
@@ -101,7 +100,7 @@ type ReactWebComponentAttribute(exportDefault: bool) =
 
 
 
-type CreateReactWebComponentAttribute(customElementName:string, userShadowDom:bool) =
+type CreateReactWebComponentAttribute(customElementName:string, useShadowDom:bool) =
     inherit MemberDeclarationPluginAttribute()
     override _.FableMinimumVersion = "3.0"
 
@@ -127,9 +126,6 @@ type CreateReactWebComponentAttribute(customElementName:string, userShadowDom:bo
                             fieldName 
                             |> Array.map (fun e -> sprintf "%s: PropTypes.string.isRequired" e)
                         )
-                        
-                        
-                    let isShadowDom = true
 
                     let webCompBody =
                         Fable.Sequential [
@@ -155,19 +151,17 @@ type CreateReactWebComponentAttribute(customElementName:string, userShadowDom:bo
                                         reactFunctionWithPropsBody; 
                                         AstUtils.makeImport "default" "react"
                                         AstUtils.makeImport "default" "react-dom"
-                                        AstUtils.emitJs (sprintf "{ shadow: %s }" (if isShadowDom then "true" else "false")) []
+                                        AstUtils.emitJs (sprintf "{ shadow: %s }" (if useShadowDom then "true" else "false")) []
                                     ]
                 
                 
                             AstUtils.emitJs "customElements.define($0,$1)" [ AstUtils.makeStrConst customElementName ; webComCall ]
                         ]
                 
-                    let decl = {
+                    {
                         decl with
                             Body = webCompBody
                     }
-        
-                    decl
             | _ ->
                 compiler.LogError "the react function is not declared with an anonymous record as paramater!"    
                 decl
