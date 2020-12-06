@@ -155,7 +155,7 @@ type CreateReactWebComponentAttribute(customElementName:string, userShadowDom:bo
                                         reactFunctionWithPropsBody; 
                                         AstUtils.makeImport "default" "react"
                                         AstUtils.makeImport "default" "react-dom"
-                                        AstUtils.emitJs (sprintf "{ shadow: %s }" (if isShadowDom then "true" else "false") []
+                                        AstUtils.emitJs (sprintf "{ shadow: %s }" (if isShadowDom then "true" else "false")) []
                                     ]
                 
                 
